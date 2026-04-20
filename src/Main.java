@@ -1,3 +1,4 @@
+import model.Contact;
 import service.PhoneBookService;
 import util.InputUtil;
 
@@ -24,6 +25,7 @@ public class Main {
                     String phone = InputUtil.getString("Phone: ");
                     String email = InputUtil.getString("Email: ");
                     service.addContact(name, phone, email);
+                    System.out.println("Contact added successfully.");
                     break;
 
                 case 2:
@@ -31,8 +33,15 @@ public class Main {
                     break;
 
                 case 3:
-                    String search = InputUtil.getString("Enter name to search: ");
-                    service.searchByName(search);
+                    String keyword = InputUtil.getString("Enter name to search: ");
+                    Contact found = service.searchByName(keyword);
+
+                    if (found != null) {
+                        System.out.println("Contact found:");
+                        System.out.println(found);
+                    } else {
+                        System.out.println("Contact not found.");
+                    }
                     break;
 
                 case 4:
@@ -40,12 +49,25 @@ public class Main {
                     String newName = InputUtil.getString("New Name: ");
                     String newPhone = InputUtil.getString("New Phone: ");
                     String newEmail = InputUtil.getString("New Email: ");
-                    service.updateContact(updateId, newName, newPhone, newEmail);
+
+                    boolean updated = service.updateContact(updateId, newName, newPhone, newEmail);
+
+                    if (updated) {
+                        System.out.println("Contact updated successfully.");
+                    } else {
+                        System.out.println("Contact not found.");
+                    }
                     break;
 
                 case 5:
                     int deleteId = InputUtil.getInt("Enter ID to delete: ");
-                    service.deleteContact(deleteId);
+                    boolean deleted = service.deleteContact(deleteId);
+
+                    if (deleted) {
+                        System.out.println("Contact deleted successfully.");
+                    } else {
+                        System.out.println("Contact not found.");
+                    }
                     break;
 
                 case 0:
