@@ -1,6 +1,6 @@
 package model;
 
-public class Contact {
+public  class Contact {
     private int id;
     private String name;
     private String phone;
@@ -43,10 +43,7 @@ public class Contact {
 
     @Override
     public String toString() {
-        return "ID: " + id +
-                " | Name: " + name +
-                " | Phone: " + phone +
-                " | Email: " + email;
+        return "ID: " + id + " | Name: " + name + " | Phone: " + phone + " | Email: " + email;
     }
 }
 
